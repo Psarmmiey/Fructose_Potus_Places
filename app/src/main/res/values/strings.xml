@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Close By</string>
+    <string name="api_key">AIzaSyA7f3V7984G9n8LggAe5xL2wuCq0874sbs</string>
+    <string name="web_service_url">https://maps.googleapis.com/maps/api/place/nearbysearch/json?</string>
+    <string name="invalid_url">Invalid URL</string>
+    <string name="place_description_image">A graphical representation of the service rendered by a particular place</string>
+    <string name="high_temp">Long: %.4f</string>
+    <string name="low_temp">Lat: %.4f</string>
+    <string name="day_description">%1$s: %2$s</string>
+    <string name="humidity">Distance: %.2f Km</string>
+    <string name="hint_text">Enter the type of service you want(e.g Bank, Restaurant, ATM)</string>
+    <string name="read_error">This type of service is not available in this area</string>
+    <string name="connect_error">Unable to connect to Google Maps Servers</string>
+    <string name="internet_error">Can\'t connect to the internet</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="place_detail_name" />
+    <string name="largetext">LargeText</string>
+</resources>

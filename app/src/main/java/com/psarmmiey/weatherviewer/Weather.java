@@ -15,28 +15,34 @@ import java.util.TimeZone;
 
 class Weather {
 
-    public final String dayOfWeek;
-    public final String minTemp;
-    public final String maxTemp;
-    public final String humidity;
-    public final String description;
-    public final String iconURL;
+    public  String nameOfPlace = "";
+    public  double lat;
+    public  double lng;
+    public  double humidity;
+    public  String description = "";
+    public String iconURL;
     // constructor
-    public Weather(long timeStamp, double minTemp, double maxTemp,
+    public Weather(String name, double lat, double lng,
                    double humidity, String description, String iconName) {
         // NumberFormat to format double temperatures rounded to integers
         NumberFormat numberFormat = NumberFormat.getInstance();
         numberFormat.setMaximumFractionDigits(0);
 
-        this.dayOfWeek = convertTimeStampToDay(timeStamp);
-        this.minTemp = numberFormat.format(minTemp) + "\u00B0F";
-        this.maxTemp = numberFormat.format(maxTemp) + "\u00B0F";
-        this.humidity = NumberFormat.getPercentInstance().format(humidity / 100.0);
+        this.nameOfPlace= name;
+        this.lat = lat;
+        this.lng = lng;
+        this.humidity = humidity;
         this.description = description;
-        this.iconURL =
-                "http://openweathermap.org/img/w/" + iconName + ".png";
+        this.iconURL = iconName;
+
+
 
     }
+
+// --Commented out by Inspection START (12/20/16 2:07 PM):
+//    public Weather(String name, double lat, double aLong, double distance, String icon) {
+//    }
+// --Commented out by Inspection STOP (12/20/16 2:07 PM)
 
     // convert timestamp to a day's name(e.g., Monday, Tuesday, ...)
     private static String convertTimeStampToDay(long timestamp) {
