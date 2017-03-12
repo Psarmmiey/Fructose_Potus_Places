@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.psarmmiey.placesViewer.AddService">
+
+    <ScrollView
+        android:layout_width="368dp"
+        android:layout_height="495dp" tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/nameTextInputLayout"
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:hint="@string/hint_name" app:hintAnimationEnabled="true"
+                app:hintEnabled="true">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/vicinityTextInputLayout"
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:hint="@string/hint_place_vicinity">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/telephoneTextInputLayout"
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:hint="@string/hint_telephone">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="number|phone" android:numeric="integer"
+                    android:phoneNumber="true"/>
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/typeTextInputLayout"
+                android:layout_width="match_parent" android:layout_height="45dp">
+
+                <Spinner
+                    android:id="@+id/typeSpinner"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:elevation="1dp"
+                    android:entries="@array/service_types" android:spinnerMode="dialog"/>
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/longTextInputLayout"
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:hint="@string/hint_longitude" android:orientation="horizontal">
+
+            </android.support.design.widget.TextInputLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/latAddTextview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="TextView"/>
+                <TextView
+                    android:id="@+id/longAddTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="TextView"/>
+            </LinearLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/latTextInputLayout"
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:hint="@string/hint_latitude" app:hintAnimationEnabled="true"
+                app:hintEnabled="true">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="true" android:inputType="none"/>
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:hint="@string/hint_icon"
+                app:hintAnimationEnabled="true" app:hintEnabled="true">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+    </ScrollView>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/saveServiceFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:layout_margin="@dimen/fab_magin" android:clickable="true"
+        app:fabSize="normal" app:srcCompat="@drawable/ic_save_black_24dp"/>
+</FrameLayout>

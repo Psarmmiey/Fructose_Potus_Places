@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="service_types">
+        <item name="restaurant">@string/restaurant</item>
+        <item name="school">@string/school</item>
+        <item name="petrol">@string/petrol_station</item>
+        <item name="post_office">@string/post_office</item>
+        <item name="hospital">@string/hospital</item>
+        <item name="chemist">@string/chemists</item>
+        <item name="church">@string/church</item>
+        <item name="mosque">@string/mosque</item>
+        <item name="bank">@string/bank</item>
+        <item name="atm">@string/atm</item>
+        <item name="super_market">@string/supermarket</item>
+
+
+    </string-array>
+</resources>

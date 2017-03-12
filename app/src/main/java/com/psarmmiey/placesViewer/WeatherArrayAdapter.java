@@ -180,9 +180,9 @@ class WeatherArrayAdapter extends ArrayAdapter<Weather> {
 			}
 		});
 		viewHolder.lowTextView.setText(
-				context.getString(R.string.low_temp, day.lat));
+			context.getString(R.string.latitude, day.lat));
 		viewHolder.hiTextView.setText(
-				context.getString(R.string.high_temp, day.lng));
+			context.getString(R.string.longitude, day.lng));
 		viewHolder.humidityTextView.setText(
 				context.getString(R.string.humidity, day.humidity));
 		viewHolder.placeID.setText(day.placeID);
