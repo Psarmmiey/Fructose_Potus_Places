@@ -1,7 +1,7 @@
 // Weather.java
 // Maintains one day's weather information
 
-package com.psarmmiey.weatherviewer;
+package com.psarmmiey.placesViewer;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -13,17 +13,19 @@ import java.util.TimeZone;
  */
 
 
-class Weather {
+public class Weather {
 
+    private static String placeID;
+    public final double lat;
+    public final double lng;
+    public final double humidity;
+    public final String iconURL;
     public  String nameOfPlace = "";
-    public  double lat;
-    public  double lng;
-    public  double humidity;
     public  String description = "";
-    public String iconURL;
+
     // constructor
     public Weather(String name, double lat, double lng,
-                   double humidity, String description, String iconName) {
+                   double humidity, String description, String iconName, String placeID) {
         // NumberFormat to format double temperatures rounded to integers
         NumberFormat numberFormat = NumberFormat.getInstance();
         numberFormat.setMaximumFractionDigits(0);
@@ -34,9 +36,13 @@ class Weather {
         this.humidity = humidity;
         this.description = description;
         this.iconURL = iconName;
+        this.placeID = placeID;
 
 
+    }
 
+    public static String getPlaceID() {
+        return placeID;
     }
 
 // --Commented out by Inspection START (12/20/16 2:07 PM):

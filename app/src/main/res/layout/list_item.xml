@@ -1,99 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:contextClickable="true"
-    android:focusable="true"
-    android:orientation="horizontal">
+    android:contextClickable="false"
+    android:focusable="false"
+    android:orientation="vertical"
+    android:scrollbarSize="2dp"
+    android:weightSum="1"
+    tools:targetApi="m">
 
-    <ImageView
-        android:id="@+id/conditionImageView"
-        android:layout_width="39dp"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/place_description_image"
-        android:drawingCacheQuality="auto"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:scaleType="fitCenter" />
+    <android.support.v7.widget.CardView
+        android:id="@+id/initialCard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:elevation="10dp"
+        app:cardElevation="0dp">
 
-    <GridLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.86"
-        android:clickable="false"
-        android:columnCount="4"
-        android:focusable="false"
-        android:orientation="vertical"
-        android:rowCount="3"
-        android:useDefaultMargins="true">
-
-        <TextView
-            android:id="@+id/dayTextView"
-            style="@android:style/Widget.DeviceDefault.Light.TextView"
-            android:layout_width="246dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_columnSpan="3"
-            android:clickable="false"
-            android:elegantTextHeight="true"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:fontFamily="sans-serif"
-            android:text="@string/largetext"
-            android:textAlignment="viewStart"
-            android:textAppearance="@android:style/TextAppearance.Material.Medium"
-            android:textStyle="normal|bold"
-            android:typeface="sans" />
+            android:orientation="vertical">
+
+            <GridLayout
+                android:id="@+id/mainGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:columnCount="5"
+                android:focusable="false"
+                android:orientation="vertical"
+                android:rowCount="5"
+                android:useDefaultMargins="true">
+
+                <ImageView
+                    android:id="@+id/conditionImageView"
+                    android:layout_width="39dp"
+                    android:layout_height="43dp"
+                    android:layout_column="0"
+                    android:layout_margin="5dp"
+                    android:layout_row="0"
+                    android:layout_rowSpan="2"
+                    android:contentDescription="@string/place_description_image"
+                    android:drawingCacheQuality="auto"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:padding="1dp"
+                    android:scaleType="centerInside"
+                    app:layout_gravity="center_vertical|center_horizontal|center" />
+
+                <TextView
+                    android:id="@+id/humidityTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_row="1"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="New Text"
+                    android:textColor="@android:color/holo_red_light" />
+
+                <TextView
+                    android:id="@+id/lowTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:layout_columnWeight="1"
+                    android:layout_row="1"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="New Text"
+                    android:textColor="@android:color/holo_green_light" />
+
+                <TextView
+                    android:id="@+id/hiTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="3"
+                    android:layout_columnWeight="1"
+                    android:layout_row="1"
+                    android:text="New Text"
+                    android:textColor="@android:color/holo_green_light" />
+
+                <Button
+                    android:id="@+id/listOptionButton"
+                    android:layout_width="35dp"
+                    android:layout_height="34dp"
+                    android:layout_column="4"
+                    android:layout_margin="2dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_row="0"
+                    android:layout_rowSpan="2"
+                    android:background="@android:color/transparent"
+                    android:elevation="8dp"
+                    android:foreground="@drawable/ic_more_vert_black_24dp"
+                    android:gravity="center_vertical|center_horizontal|center"
+                    android:padding="0dp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    app:layout_row="0" />
+
+                <TextView
+                    android:id="@+id/dayTextView"
+                    style="@android:style/Widget.DeviceDefault.Light.TextView"
+                    android:layout_width="226dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_column="1"
+                    android:layout_columnSpan="3"
+                    android:layout_row="0"
+                    android:clickable="false"
+                    android:elegantTextHeight="true"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/largetext"
+                    android:textAlignment="viewStart"
+                    android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                    android:textStyle="normal|bold"
+                    android:typeface="sans" />
+
+
+            </GridLayout>
+
+            <GridLayout
+                android:id="@+id/subGrid"
+                android:layout_width="360dp"
+                android:layout_height="140dp"
+                android:visibility="gone">
+
+            </GridLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/detailCard"
+        android:layout_width="match_parent"
+        android:layout_height="248dp"
+        android:fadeScrollbars="true"
+        app:cardElevation="6dp">
 
         <TextView
-            android:id="@+id/humidityTextView"
+            android:id="@+id/website"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="2"
-            android:layout_columnWeight="1"
-            android:layout_row="1"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:fontFamily="sans-serif"
-            android:text="New Text" />
-
-        <TextView
-            android:id="@+id/lowTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_row="1"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:text="New Text" />
-
-        <TextView
-            android:id="@+id/hiTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_row="1"
-            android:text="New Text"/>
-
-        <Button
-            android:id="@+id/listOptionButton"
-            android:layout_width="35dp"
-            android:layout_height="34dp"
-            android:layout_column="3"
-            android:layout_margin="2dp"
-            android:layout_marginTop="10dp"
-            android:layout_row="0"
-            android:layout_rowSpan="2"
-            android:background="@android:color/transparent"
-            android:elevation="8dp"
-            android:foreground="@drawable/ic_more_vert_black_24dp"
-            android:padding="0dp"
-            android:textColor="?android:attr/textColorSecondary"
-            app:layout_row="0" />
-
-    </GridLayout>
+            android:text="@string/textview" />
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.psarmmiey.weatherviewer;
+package com.psarmmiey.placesViewer;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,12 +7,17 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.io.InputStream;
@@ -29,10 +34,10 @@ import java.util.Map;
 class WeatherArrayAdapter extends ArrayAdapter<Weather> {
 	// stores already downloaded Bitmaps for reuse
 	private final Map<String, Bitmap> bitmaps = new HashMap<>();
-
+	//View popUpView;
 
 	// constructor to initialize inherited member
-	public WeatherArrayAdapter(Context context, List<Weather> forecast) {
+	WeatherArrayAdapter(Context context, List<Weather> forecast) {
 		super(context, -1, forecast);
 	}
 
@@ -43,7 +48,7 @@ class WeatherArrayAdapter extends ArrayAdapter<Weather> {
 		// get weather object for this specified ListView position
 		final Weather day = getItem(position);
 
-		ViewHolder viewHolder; // object that reference's list item's views
+		final ViewHolder viewHolder; // object that reference's list item's views
 
 		// check for reusable ViewHolder from a ListView item that scrolled
 		// offscreen; otherwise, create a new ViewHolder
@@ -52,6 +57,8 @@ class WeatherArrayAdapter extends ArrayAdapter<Weather> {
 			LayoutInflater inflater = LayoutInflater.from(getContext());
 			convertView =
 					inflater.inflate(R.layout.list_item, parent, false);
+			viewHolder.initialCard =
+					(CardView) convertView.findViewById(R.id.initialCard);
 			viewHolder.conditionImageView =
 					(ImageView) convertView.findViewById(R.id.conditionImageView);
 			viewHolder.dayTextView =
@@ -64,11 +71,18 @@ class WeatherArrayAdapter extends ArrayAdapter<Weather> {
 					(TextView) convertView.findViewById(R.id.hiTextView);
 			viewHolder.humidityTextView =
 					(TextView) convertView.findViewById(R.id.humidityTextView);
+			viewHolder.subGrid =
+					(GridLayout) convertView.findViewById(R.id.subGrid);
+			viewHolder.detailsCard =
+					(CardView) convertView.findViewById(R.id.detailCard);
+
 			convertView.setTag(viewHolder);
+
 
 		} else { // reuse existing ViewHolder stored as the list item's tag
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
+
 
 		// if weather condition icon already downloaded, use it;
 		// otherwise, download icon in a separate thread
@@ -85,15 +99,54 @@ class WeatherArrayAdapter extends ArrayAdapter<Weather> {
 		final Context context = getContext(); // for loading String resources
 		viewHolder.dayTextView.setText(context.getString(
 				R.string.day_description, day.nameOfPlace, day.description));
-
+		viewHolder.detailsCard.setVisibility(View.GONE);
 
 		viewHolder.listOptionButton.setOnClickListener(new View.OnClickListener() {
+
 			@Override
-			public void onClick(View view) {
-				Uri gmmIntentUri = Uri.parse("google.navigation:q=" + day.lat + "," + day.lng);
-				Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-				mapIntent.setPackage("com.google.android.apps.maps");
-				context.startActivity(mapIntent);
+            public void onClick(final View view) {
+
+				switch (view.getId()) {
+                    case R.id.listOptionButton:
+                        PopupMenu popup = new PopupMenu(context, view);
+                        popup.getMenuInflater().inflate(R.menu.popup_list_option, popup.getMenu());
+                        popup.show();
+
+						popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+							@Override
+							public boolean onMenuItemClick(MenuItem menuItem) {
+								switch (menuItem.getItemId()) {
+									case R.id.navigate:
+										Uri gmmIntentUri = Uri.parse("google.navigation:q=" + day.lat + "," + day.lng);
+										Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+										mapIntent.setPackage("com.google.android.apps.maps");
+										context.startActivity(mapIntent);
+
+										break;
+									case R.id.view:
+										// viewHolder.conditionImageView.setVisibility(View.GONE);
+										// viewHolder.subGrid.setVisibility(View.VISIBLE);
+										viewHolder.detailsCard.setVisibility(View.VISIBLE);
+										// context.startActivity(Intent.makeMainActivity(R.layout.activity_detail_view));
+										//Intent in = new Intent(context, DetailView.class);
+
+										// context.startActivity(in);
+										//  ((MainActivity) context).setContentView(R.layout.content_detail_view);
+
+									default:
+										break;
+								}
+
+								return true;
+							}
+						});
+
+						break;
+
+					default:
+						break;
+				}
+				/**/
 			}
 		});
 		viewHolder.lowTextView.setText(
@@ -114,6 +167,11 @@ class WeatherArrayAdapter extends ArrayAdapter<Weather> {
 		TextView hiTextView;
 		TextView humidityTextView;
 		Button listOptionButton;
+        View detailsView;
+        RatingBar placeRating;
+		CardView detailsCard;
+		CardView initialCard;
+		GridLayout subGrid;
 	}
 
 	// AsyncTask to load weather condition icons in a separate thread

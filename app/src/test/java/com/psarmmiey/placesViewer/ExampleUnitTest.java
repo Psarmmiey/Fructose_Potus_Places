@@ -1,4 +1,4 @@
-package com.psarmmiey.weatherviewer;
+package com.psarmmiey.placesViewer;
 
 import org.junit.Test;
 
