@@ -129,7 +129,6 @@ class WeatherArrayAdapter extends ArrayAdapter<Weather> {
 										viewHolder.detailsCard.setVisibility(View.VISIBLE);
 										// context.startActivity(Intent.makeMainActivity(R.layout.activity_detail_view));
 										//Intent in = new Intent(context, DetailView.class);
-
 										// context.startActivity(in);
 										//  ((MainActivity) context).setContentView(R.layout.content_detail_view);
 
@@ -192,8 +191,7 @@ class WeatherArrayAdapter extends ArrayAdapter<Weather> {
 			try {
 				URL url = new URL(params[0]); // create URL for image
 
-				// open an HttpURLConnection, get its InputStream
-				// and download the image
+				// open an HttpURLConnection, get its InputStream and download the image
 				connection = (HttpURLConnection) url.openConnection();
 
 				try (InputStream inputStream = connection.getInputStream()) {
